@@ -1,0 +1,5 @@
+## `golang-challenges`
+
+```
+go test
+```
