@@ -1,39 +1,34 @@
 package main
 
 import (
-	"fmt"
+	"math"
 	"strconv"
 	"strings"
 )
 
+func max(x, y int) int {
+	if x < y {
+		return y
+	}
+	return x
+}
+
 func findBestProfitableOperation(pricesStr string) int {
-	fmt.Println("Prices:", pricesStr)
 	var profit int = 0
 	prices := strings.Split(pricesStr, ",")
 
-	profits := []int{}
-	for idx, price := range prices {
+	min := math.MaxInt
 
-		for idxTrade, priceToTrade := range prices {
-			p, err := strconv.Atoi(price)
-			if err != nil {
-				panic(err)
-			}
-			pt, err := strconv.Atoi(priceToTrade)
-			if err != nil {
-				panic(err)
-			}
-
-			// não chegar preços passados
-			if idxTrade >= idx {
-				profits = append(profits, pt-p)
-			}
+	for _, price := range prices {
+		p, err := strconv.Atoi(price)
+		if err != nil {
+			panic(err)
 		}
-	}
 
-	for _, p := range profits {
-		if p > profit {
-			profit = p
+		if p > min {
+			profit = max(profit, p-min)
+		} else {
+			min = p
 		}
 	}
 

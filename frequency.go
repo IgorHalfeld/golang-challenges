@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 
 	"github.com/gosimple/slug"
@@ -20,9 +19,6 @@ func contains(str []string, match string) bool {
 }
 
 func getMoreFrequentWordFilteringByForbiddenWords(paragraph string, forbiddenWords []string) string {
-	fmt.Println("Paragraph:", paragraph)
-	fmt.Println("Forbidden words:", forbiddenWords)
-
 	var mostFrequentAllowed string
 	hashmapCount := map[string]int{}
 	words := strings.Split(paragraph, " ")
